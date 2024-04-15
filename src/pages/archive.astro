@@ -15,7 +15,6 @@ posts.forEach((post: Post) => {
   }
   postByYear.get(year)!.push(post)
 })
-
 ---
 
 <LayoutDefault>
@@ -24,7 +23,11 @@ posts.forEach((post: Post) => {
       Array.from(postByYear.entries()).map(([year, posts]) => (
         <ListSection title={year}>
           {posts.map((post) => (
-            <ListItem title={post.data.title} href={`/posts/${post.slug}/`} description={formatDate(post.data.pubDate)} />
+            <ListItem
+              title={post.data.title}
+              href={`/posts/${post.slug}/`}
+              description={formatDate(post.data.pubDate)}
+            />
           ))}
         </ListSection>
       ))

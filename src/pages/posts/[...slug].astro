@@ -22,7 +22,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { entry, prev, next } = Astro.props
 const { Content } = await entry.render()
-const { translate: t} = Astro.locals
+const { translate: t } = Astro.locals
 ---
 
 <LayoutDefault
@@ -34,51 +34,50 @@ const { translate: t} = Astro.locals
     <Content />
   </Post>
   <Pagination
-      showLeft={Boolean(prev)}
-      leftTitle={`${t('prev_post')}: ${prev?.data.title}`}
-      leftUrl={`/posts/${prev?.slug}/`}
-      showRight={Boolean(next)}
-      rightTitle={`${t('next_post')}: ${next?.data.title}`}
-      rightUrl={`/posts/${next?.slug}/`}
-      showPageCount={false}
-    />
+    showLeft={Boolean(prev)}
+    leftTitle={`${t('prev_post')}: ${prev?.data.title}`}
+    leftUrl={`/posts/${prev?.slug}/`}
+    showRight={Boolean(next)}
+    rightTitle={`${t('next_post')}: ${next?.data.title}`}
+    rightUrl={`/posts/${next?.slug}/`}
+    showPageCount={false}
+  />
 </LayoutDefault>
 
-
 <script>
-  const copyButtonLabel = "Copy";
-  const codeBlocks = Array.from(document.querySelectorAll("pre"));
+  const copyButtonLabel = 'Copy'
+  const codeBlocks = Array.from(document.querySelectorAll('pre'))
 
   for (let codeBlock of codeBlocks) {
-    let wrapper = document.createElement("div");
-    wrapper.style.position = "relative";
+    let wrapper = document.createElement('div')
+    wrapper.style.position = 'relative'
 
-    let copyButton = document.createElement("button");
-    copyButton.className = "copy-code";
-    copyButton.innerHTML = copyButtonLabel;
+    let copyButton = document.createElement('button')
+    copyButton.className = 'copy-code'
+    copyButton.innerHTML = copyButtonLabel
 
-    codeBlock.setAttribute("tabindex", "0");
-    codeBlock.appendChild(copyButton);
+    codeBlock.setAttribute('tabindex', '0')
+    codeBlock.appendChild(copyButton)
 
-    codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
-    wrapper.appendChild(codeBlock);
+    codeBlock.parentNode?.insertBefore(wrapper, codeBlock)
+    wrapper.appendChild(codeBlock)
 
-    copyButton.addEventListener("click", async () => {
-      await copyCode(codeBlock, copyButton);
-    });
+    copyButton.addEventListener('click', async () => {
+      await copyCode(codeBlock, copyButton)
+    })
   }
 
   async function copyCode(block: HTMLPreElement, button: HTMLButtonElement) {
-    let code = block.querySelector("code");
-    let text = code?.innerText;
+    let code = block.querySelector('code')
+    let text = code?.innerText
 
-    await navigator.clipboard.writeText(text ?? "");
+    await navigator.clipboard.writeText(text ?? '')
 
-    button.innerText = "Code Copied";
+    button.innerText = 'Code Copied'
 
     setTimeout(() => {
-      button.innerText = copyButtonLabel;
-    }, 700);
+      button.innerText = copyButtonLabel
+    }, 700)
   }
 </script>
 

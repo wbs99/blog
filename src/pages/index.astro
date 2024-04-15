@@ -7,7 +7,6 @@ import Pagination from '~/components/Pagination.astro'
 const posts = (await getPosts()).slice(0, 5)
 
 const { translate: t } = Astro.locals
-
 ---
 
 <LayoutDefault>
@@ -19,6 +18,11 @@ const { translate: t } = Astro.locals
         </Post>
       ))
     }
-    <Pagination showLeft={false} showPageCount={false} rightTitle={t('all_posts')} rightUrl={'posts/page/1'} />
+    <Pagination
+      showLeft={false}
+      showPageCount={false}
+      rightTitle={t('all_posts')}
+      rightUrl={'posts/page/1'}
+    />
   </section>
 </LayoutDefault>
